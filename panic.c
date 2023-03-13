@@ -56,8 +56,7 @@ panic_modevent(module_t mod __unused, int event, void *arg __unused)
         case MOD_LOAD:
             sysctl_ctx_init(&clist);
 
-            poid = SYSCTL_ADD_NODE(&clist,
-                    SYSCTL_STATIC_CHILDREN(/* tree top */), OID_AUTO,
+            poid = SYSCTL_ADD_ROOT_NODE(&clist, OID_AUTO,
                     "panic", 0, 0, "panic root");
             if (poid == NULL) {
                 uprintf("SYSCTL_ADD_NODE failed.\n");
